@@ -91,24 +91,24 @@ Bluetooth.println(JSON.stringify({t:"int­ent",action:"com.sonyericsson.alarm.AL
 
 This will send a Global Android intent which can cause certain apps/windows to open, or can be used with apps like `Tasker`.
 
-*(The following is not present in Gadgetbridge version 0.68.0 published on F-droid as of 2022-08-18, but works for beta testers of "Bangle.js Gadgetbridge" on Google Play Store. It's also available in the [nigtly releases](https://freeyourgadget.codeberg.page/fdroid/repo/), or if [building from source](https://www.espruino.com/Gadgetbridge#building-gadgetbridge).)*
+*(The following is not present in Gadgetbridge version 0.68.0 published on F-droid as of 2022-08-18, but works for beta testers of "Bangle.js Gadgetbridge" on Google Play Store. It's also available in the [nightly releases](https://freeyourgadget.codeberg.page/fdroid/repo/), or if [building from source](https://www.espruino.com/Gadgetbridge#building-gadgetbridge).)*
 
 Or:
 
 ```
-Bluetooth.println(JSON.stringify({t:"intent", action:"android.media.action.MEDIA_PLAY_FROM_SEARCH", category:"android.intent.category.DEFAULT", target:"activity", extra:{"query":'track:"Sittin\' on the Dock of the Bay" artist:"Otis Redding"'}}))
+Bluetooth.println(JSON.stringify({t:"intent", action:"android.media.action.MEDIA_PLAY_FROM_SEARCH", category:"android.intent.category.DEFAULT", target:"activity", extra:{query:'track:"Sittin\' on the Dock of the Bay" artist:"Otis Redding"'}, flags:["FLAG_ACTIVITY_NEW_TASK"]}))
 ```
 
-This will search for and play the song "Sittin' on the Dock of the Bay". The android device will ask about what app to use.
+This will search for and play the song "Sittin' on the Dock of the Bay". The android device will ask about what app to use. The flag "FLAG_ACTIVITY_NEW_TASK" is needed in order for the activity to launch in this case.
 
 Gadgetbridge with a Bangle.js can broadcast intents and start activities. Targeting of services is not yet implemented.
 
-The following type of information can be supplied for intents: target, action, category, package, class, mimetype, data and extra. Values to pass with the target key are "broadcastreceiver", "activity" or "service". Intents will default to being broadcast if no target is specified.
+The following type of information can be supplied for intents: target, action, category, package, class, mimetype, data, extra and flags. Values to pass with the target key are "broadcastreceiver", "activity" or "service". Intents will default to being broadcast if no target is specified. Available flags are listed in the [Android API Reference Intents page](https://developer.android.com/reference/android/content/Intent#setFlags(int)).
 
 Template for initiating an intent from a Bangle.js app:
 
 ```
-Bluetooth.println(JSON.stringify({t:"intent", target:"", action:"", category:"", package:"", class:"", mimetype:"", data:"", extra:{someKey:"someValueOrString"}, flags:[flag1,flag2,flag3,...]}));
+Bluetooth.println(JSON.stringify({t:"intent", target:"", action:"", category:"", package:"", class:"", mimetype:"", data:"", extra:{someKey:"someValueOrString",...}, flags:["flag1","flag2","flag3",...]}));
 ```
 
 Key/value-pairs can be omitted if they are not needed.
