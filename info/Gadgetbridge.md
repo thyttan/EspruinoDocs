@@ -108,7 +108,7 @@ The following type of information can be supplied for intents: target, action, c
 Template for initiating an intent from a Bangle.js app:
 
 ```
-Bluetooth.println(JSON.stringify({t:"intent", target:"", action:"", category:"", package:"", class:"", mimetype:"", data:"", extra:{someKey:"someValueOrString"}}));
+Bluetooth.println(JSON.stringify({t:"intent", target:"", action:"", category:"", package:"", class:"", mimetype:"", data:"", extra:{someKey:"someValueOrString"}, flags:[flag1,flag2,flag3,...]}));
 ```
 
 Key/value-pairs can be omitted if they are not needed.
