@@ -96,19 +96,19 @@ This will send a Global Android intent which can cause certain apps/windows to o
 Or:
 
 ```
-Bluetooth.println(JSON.stringify({t:"intent", action:"android.media.action.MEDIA_PLAY_FROM_SEARCH", category:"android.intent.category.DEFAULT", target:"activity", extra:{query:'track:"Sittin\' on the Dock of the Bay" artist:"Otis Redding"'}, flags:["FLAG_ACTIVITY_NEW_TASK"]}))
+Bluetooth.println(JSON.stringify({t:"intent", target:"activity", action:"android.media.action.MEDIA_PLAY_FROM_SEARCH", flags:["FLAG_ACTIVITY_NEW_TASK"], category:"android.intent.category.DEFAULT", extra:{query:'track:"Sittin\' on the Dock of the Bay" artist:"Otis Redding"'}}))
 ```
 
 This will search for and play the song "Sittin' on the Dock of the Bay". The android device will ask about what app to use. The flag "FLAG_ACTIVITY_NEW_TASK" is needed in order for the activity to launch in this case.
 
-Gadgetbridge with a Bangle.js can broadcast intents and start activities. Targeting of services has been implemented, but has not been tested as of 2022-08-23.
+Gadgetbridge with a Bangle.js can broadcast intents and start activities. Targeting of services has been implemented, but has not been tested as of 2022-08-23. Intents will default to being broadcast if no target is specified.
 
-The following type of information can be supplied for intents: target, action, category, package, class, mimetype, data, extra and flags. Values to pass with the target key are "broadcastreceiver", "activity", "service" or "foregroundservice. Intents will default to being broadcast if no target is specified. Available flags are listed in the [Android API Reference Intents page](https://developer.android.com/reference/android/content/Intent#setFlags(int)), you can also find the *standard categories* and more browsing this page.
+The following type of information can be supplied for intents: target, action, category, package, class, mimetype, data, extra and flags. Values to pass with the target key are "broadcastreceiver", "activity", "service" or "foregroundservice. Available flags are listed in the [Android API Reference Intents page](https://developer.android.com/reference/android/content/Intent#setFlags(int)), you can also find the *standard categories* and more browsing this page.
 
 Template for initiating an intent from a Bangle.js app:
 
 ```
-Bluetooth.println(JSON.stringify({t:"intent", target:"", action:"", categories:["category1","category2",...], package:"", class:"", mimetype:"", data:"", extra:{someKey:"someValueOrString",...}, flags:["flag1","flag2","flag3",...]}));
+Bluetooth.println(JSON.stringify({t:"intent", target:"", action:"", flags:["flag1","flag2","flag3",...], categories:["category1","category2",...], package:"", class:"", mimetype:"", data:"", extra:{someKey:"someValueOrString",...}}));
 ```
 
 Key/value-pairs can be omitted if they are not needed.
