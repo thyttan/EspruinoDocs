@@ -101,9 +101,9 @@ Bluetooth.println(JSON.stringify({t:"intent", action:"android.media.action.MEDIA
 
 This will search for and play the song "Sittin' on the Dock of the Bay". The android device will ask about what app to use. The flag "FLAG_ACTIVITY_NEW_TASK" is needed in order for the activity to launch in this case.
 
-Gadgetbridge with a Bangle.js can broadcast intents and start activities. Targeting of services is not yet implemented.
+Gadgetbridge with a Bangle.js can broadcast intents and start activities. Targeting of services has been implemented, but has not been tested as of 2022-08-23.
 
-The following type of information can be supplied for intents: target, action, category, package, class, mimetype, data, extra and flags. Values to pass with the target key are "broadcastreceiver", "activity" or "service". Intents will default to being broadcast if no target is specified. Available flags are listed in the [Android API Reference Intents page](https://developer.android.com/reference/android/content/Intent#setFlags(int)), you can also find the *standard categories* and more browsing this page.
+The following type of information can be supplied for intents: target, action, category, package, class, mimetype, data, extra and flags. Values to pass with the target key are "broadcastreceiver", "activity", "service" or "foregroundservice. Intents will default to being broadcast if no target is specified. Available flags are listed in the [Android API Reference Intents page](https://developer.android.com/reference/android/content/Intent#setFlags(int)), you can also find the *standard categories* and more browsing this page.
 
 Template for initiating an intent from a Bangle.js app:
 
